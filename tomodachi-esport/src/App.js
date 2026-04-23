@@ -17,12 +17,12 @@ green: "#16a34a”,
 text: "#fff”,
 muted: "#888”,
 faint: "#444”,
-font: "Rajdhani’, sans-serif",
-fontDisplay: "‘Orbitron’, sans-serif”,
+font: "'Rajdhani', sans-serif",
+fontDisplay: "'Orbitron', sans-serif",
 };
 
-const gameColor = (g) => g === "eFootball” ? T.cyan : g === "CoDM” ? "#ff6b35” : T.purple;
-const gameEmoji = (g) => g === "eFootball” ? "⚽” : g === "CoDM” ? "🎯” : "⚔️”;
+const gameColor = (g) => g === "eFootball" ? T.cyan : g === "CoDM" ? "#ff6b35" : T.purple;
+const gameEmoji = (g) => g === "eFootball" ? "⚽” : g === "CoDM" ? "🎯” : "⚔️”;
 
 // ─── CONTEXT ─────────────────────────────────────────────────────────────────
 const AppCtx = createContext(null);
