@@ -1,28 +1,28 @@
-import React, { useState, createContext, useContext } from “react”;
-import { BrowserRouter as Router, Routes, Route, NavLink } from “react-router-dom”;
+import React, { useState, createContext, useContext } from "react”;
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom”;
 
 // ─── THEME ───────────────────────────────────────────────────────────────────
 const T = {
-bg: “#0a0a0f”,
-surface: “rgba(255,255,255,0.04)”,
-border: “rgba(255,255,255,0.08)”,
-red: “#dc2626”,
-redDim: “rgba(220,38,38,0.15)”,
-redBorder: “rgba(220,38,38,0.35)”,
-cyan: “#00e5ff”,
-cyanDim: “rgba(0,229,255,0.1)”,
-gold: “#eab308”,
-purple: “#a855f7”,
-green: “#16a34a”,
-text: “#fff”,
-muted: “#888”,
-faint: “#444”,
-font: “‘Rajdhani’, sans-serif”,
-fontDisplay: “‘Orbitron’, sans-serif”,
+bg: "#0a0a0f”,
+surface: "rgba(255,255,255,0.04)”,
+border: "rgba(255,255,255,0.08)”,
+red: "#dc2626”,
+redDim: "rgba(220,38,38,0.15)”,
+redBorder: "rgba(220,38,38,0.35)”,
+cyan: "#00e5ff”,
+cyanDim: "rgba(0,229,255,0.1)”,
+gold: "#eab308”,
+purple: "#a855f7”,
+green: "#16a34a”,
+text: "#fff”,
+muted: "#888”,
+faint: "#444”,
+font: "Rajdhani’, sans-serif",
+fontDisplay: "‘Orbitron’, sans-serif”,
 };
 
-const gameColor = (g) => g === “eFootball” ? T.cyan : g === “CoDM” ? “#ff6b35” : T.purple;
-const gameEmoji = (g) => g === “eFootball” ? “⚽” : g === “CoDM” ? “🎯” : “⚔️”;
+const gameColor = (g) => g === "eFootball” ? T.cyan : g === "CoDM” ? "#ff6b35” : T.purple;
+const gameEmoji = (g) => g === "eFootball” ? "⚽” : g === "CoDM” ? "🎯” : "⚔️”;
 
 // ─── CONTEXT ─────────────────────────────────────────────────────────────────
 const AppCtx = createContext(null);
@@ -33,12 +33,12 @@ function Notif({ msg, type }) {
 if (!msg) return null;
 return (
 <div style={{
-position: “fixed”, top: 20, left: “50%”, transform: “translateX(-50%)”,
-background: type === “error” ? “#dc2626” : T.green,
-color: “#fff”, padding: “11px 28px”, borderRadius: 10, zIndex: 9999,
+position: "fixed”, top: 20, left: "50%”, transform: "translateX(-50%)”,
+background: type === "error” ? "#dc2626” : T.green,
+color: "#fff”, padding: "11px 28px”, borderRadius: 10, zIndex: 9999,
 fontFamily: T.font, fontWeight: 700, fontSize: 15,
-boxShadow: “0 8px 32px rgba(0,0,0,0.5)”, whiteSpace: “nowrap”,
-animation: “fadeIn 0.2s ease”
+boxShadow: "0 8px 32px rgba(0,0,0,0.5)”, whiteSpace: "nowrap”,
+animation: "fadeIn 0.2s ease”
 }}>{msg}</div>
 );
 }
@@ -58,26 +58,26 @@ function Btn({ children, onClick, color = T.red, style = {}, small = false }) {
 return (
 <div onClick={onClick} style={{
 background: `linear-gradient(135deg, ${color}, ${color}bb)`,
-borderRadius: 9, padding: small ? “7px 14px” : “12px”,
-textAlign: “center”, cursor: “pointer”,
+borderRadius: 9, padding: small ? "7px 14px” : "12px”,
+textAlign: "center”, cursor: "pointer”,
 fontFamily: T.fontDisplay, fontSize: small ? 11 : 13,
-fontWeight: 700, letterSpacing: 1, color: “#fff”,
-userSelect: “none”, transition: “opacity 0.15s”, …style
+fontWeight: 700, letterSpacing: 1, color: "#fff”,
+userSelect: "none”, transition: "opacity 0.15s”, …style
 }}
-onMouseEnter={e => e.currentTarget.style.opacity = “0.85”}
-onMouseLeave={e => e.currentTarget.style.opacity = “1”}
+onMouseEnter={e => e.currentTarget.style.opacity = "0.85”}
+onMouseLeave={e => e.currentTarget.style.opacity = "1”}
 >{children}</div>
 );
 }
 
-function Input({ value, onChange, placeholder, type = “text”, style = {} }) {
+function Input({ value, onChange, placeholder, type = "text”, style = {} }) {
 return (
 <input type={type} value={value} onChange={onChange} placeholder={placeholder}
 style={{
-width: “100%”, background: “rgba(255,255,255,0.06)”,
+width: "100%”, background: "rgba(255,255,255,0.06)”,
 border: `1px solid ${T.border}`, borderRadius: 9,
-padding: “10px 14px”, color: T.text, fontFamily: T.font,
-fontSize: 14, outline: “none”, boxSizing: “border-box”, …style
+padding: "10px 14px”, color: T.text, fontFamily: T.font,
+fontSize: 14, outline: "none”, boxSizing: "border-box”, …style
 }} />
 );
 }
@@ -85,9 +85,9 @@ fontSize: 14, outline: “none”, boxSizing: “border-box”, …style
 function Select({ value, onChange, children, style = {} }) {
 return (
 <select value={value} onChange={onChange} style={{
-width: “100%”, background: “#111118”, border: `1px solid ${T.border}`,
-borderRadius: 9, padding: “10px 14px”, color: T.text,
-fontFamily: T.font, fontSize: 14, outline: “none”, …style
+width: "100%”, background: "#111118”, border: `1px solid ${T.border}`,
+borderRadius: 9, padding: "10px 14px”, color: T.text,
+fontFamily: T.font, fontSize: 14, outline: "none”, …style
 }}>{children}</select>
 );
 }
@@ -108,22 +108,22 @@ return (
 function Header({ currentUser, setCurrentUser, players }) {
 const coins = players.find(p => p.name === currentUser)?.coins ?? 0;
 return (
-<div style={{ background: “rgba(10,10,15,0.95)”, borderBottom: `1px solid ${T.border}`, padding: “14px 16px”, backdropFilter: “blur(10px)”, position: “sticky”, top: 0, zIndex: 50 }}>
-<div style={{ maxWidth: 480, margin: “0 auto” }}>
-<div style={{ display: “flex”, justifyContent: “space-between”, alignItems: “center”, marginBottom: 10 }}>
+<div style={{ background: "rgba(10,10,15,0.95)”, borderBottom: `1px solid ${T.border}`, padding: "14px 16px”, backdropFilter: "blur(10px)”, position: "sticky”, top: 0, zIndex: 50 }}>
+<div style={{ maxWidth: 480, margin: "0 auto” }}>
+<div style={{ display: "flex”, justifyContent: "space-between”, alignItems: "center”, marginBottom: 10 }}>
 <div>
 <div style={{ fontFamily: T.fontDisplay, fontSize: 18, fontWeight: 900, color: T.red, letterSpacing: 2, textShadow: `0 0 20px ${T.redBorder}` }}>TOMODACHI</div>
 <div style={{ fontFamily: T.fontDisplay, fontSize: 9, color: T.faint, letterSpacing: 4 }}>E-SPORT · PARIS</div>
 </div>
-<div style={{ background: T.redDim, border: `1px solid ${T.redBorder}`, borderRadius: 8, padding: “5px 12px”, textAlign: “right” }}>
+<div style={{ background: T.redDim, border: `1px solid ${T.redBorder}`, borderRadius: 8, padding: "5px 12px”, textAlign: "right” }}>
 <div style={{ fontFamily: T.fontDisplay, fontSize: 16, fontWeight: 900, color: T.red }}>{coins.toLocaleString()}</div>
 <div style={{ fontSize: 9, color: T.muted, letterSpacing: 2 }}>TOMOCOINS</div>
 </div>
 </div>
-<div style={{ display: “flex”, alignItems: “center”, gap: 8 }}>
-<div style={{ fontSize: 12, color: T.muted, whiteSpace: “nowrap” }}>Joueur :</div>
-<Select value={currentUser} onChange={e => setCurrentUser(e.target.value)} style={{ padding: “5px 10px”, fontSize: 13 }}>
-{players.map(p => <option key={p.id} value={p.name} style={{ background: “#111118” }}>{p.name} — {gameEmoji(p.game)} {p.game}</option>)}
+<div style={{ display: "flex”, alignItems: "center”, gap: 8 }}>
+<div style={{ fontSize: 12, color: T.muted, whiteSpace: "nowrap” }}>Joueur :</div>
+<Select value={currentUser} onChange={e => setCurrentUser(e.target.value)} style={{ padding: "5px 10px”, fontSize: 13 }}>
+{players.map(p => <option key={p.id} value={p.name} style={{ background: "#111118” }}>{p.name} — {gameEmoji(p.game)} {p.game}</option>)}
 </Select>
 </div>
 </div>
@@ -134,27 +134,27 @@ return (
 // ─── NAV ──────────────────────────────────────────────────────────────────────
 function BottomNav() {
 const navItems = [
-{ to: “/”, label: “Accueil”, icon: “🏠” },
-{ to: “/matchs”, label: “Matchs”, icon: “⚔️” },
-{ to: “/paris”, label: “Paris”, icon: “🎯” },
-{ to: “/classement”, label: “Top”, icon: “🏆” },
-{ to: “/admin”, label: “Admin”, icon: “⚙️” },
+{ to: "/”, label: "Accueil”, icon: "🏠” },
+{ to: "/matchs”, label: "Matchs”, icon: "⚔️” },
+{ to: "/paris”, label: "Paris”, icon: "🎯” },
+{ to: "/classement”, label: "Top”, icon: "🏆” },
+{ to: "/admin”, label: "Admin”, icon: "⚙️” },
 ];
 return (
 <nav style={{
-position: “fixed”, bottom: 0, left: “50%”, transform: “translateX(-50%)”,
-width: “100%”, maxWidth: 480, background: “rgba(10,10,15,0.97)”,
-borderTop: `1px solid ${T.border}`, display: “flex”, zIndex: 100,
-backdropFilter: “blur(16px)”
+position: "fixed”, bottom: 0, left: "50%”, transform: "translateX(-50%)”,
+width: "100%”, maxWidth: 480, background: "rgba(10,10,15,0.97)”,
+borderTop: `1px solid ${T.border}`, display: "flex”, zIndex: 100,
+backdropFilter: "blur(16px)”
 }}>
 {navItems.map(n => (
-<NavLink key={n.to} to={n.to} end={n.to === “/”} style={({ isActive }) => ({
-flex: 1, padding: “10px 4px 8px”, textAlign: “center”,
-textDecoration: “none”, fontSize: 9, fontWeight: 700,
+<NavLink key={n.to} to={n.to} end={n.to === "/”} style={({ isActive }) => ({
+flex: 1, padding: "10px 4px 8px”, textAlign: "center”,
+textDecoration: "none”, fontSize: 9, fontWeight: 700,
 letterSpacing: 0.5, fontFamily: T.font,
 color: isActive ? T.red : T.faint,
-borderTop: isActive ? `2px solid ${T.red}` : “2px solid transparent”,
-transition: “all 0.2s”
+borderTop: isActive ? `2px solid ${T.red}` : "2px solid transparent”,
+transition: "all 0.2s”
 })}>
 <div style={{ fontSize: 18, marginBottom: 2 }}>{n.icon}</div>
 {n.label}
@@ -169,7 +169,7 @@ function Home() {
 const { currentUser, players, bets, matches } = useApp();
 const player = players.find(p => p.name === currentUser);
 const myBets = bets.filter(b => b.user === currentUser);
-const upcomingCount = matches.filter(m => m.status === “upcoming”).length;
+const upcomingCount = matches.filter(m => m.status === "upcoming”).length;
 const totalBetPool = bets.reduce((s, b) => s + b.amount, 0);
 
 return (
@@ -177,10 +177,10 @@ return (
 {/* Hero balance */}
 <div style={{
 background: `linear-gradient(135deg, rgba(220,38,38,0.2), rgba(0,229,255,0.08))`,
-border: `1px solid ${T.redBorder}`, borderRadius: 16, padding: “24px 20px”,
-marginBottom: 14, textAlign: “center”, position: “relative”, overflow: “hidden”
+border: `1px solid ${T.redBorder}`, borderRadius: 16, padding: "24px 20px”,
+marginBottom: 14, textAlign: "center”, position: "relative”, overflow: "hidden”
 }}>
-<div style={{ position: “absolute”, top: -30, right: -30, width: 120, height: 120, borderRadius: “50%”, background: `radial-gradient(circle, rgba(220,38,38,0.15), transparent)` }} />
+<div style={{ position: "absolute”, top: -30, right: -30, width: 120, height: 120, borderRadius: "50%”, background: `radial-gradient(circle, rgba(220,38,38,0.15), transparent)` }} />
 <div style={{ fontFamily: T.fontDisplay, fontSize: 10, color: T.muted, letterSpacing: 3, marginBottom: 8 }}>TON SOLDE</div>
 <div style={{ fontFamily: T.fontDisplay, fontSize: 42, fontWeight: 900, color: T.red, lineHeight: 1 }}>{(player?.coins ?? 0).toLocaleString()}</div>
 <div style={{ fontSize: 13, color: T.muted, marginTop: 6 }}>TomoCoins · {player?.game}</div>
@@ -245,8 +245,8 @@ marginBottom: 14, textAlign: “center”, position: “relative”, overflow: �
 // ─── MATCHS PAGE ──────────────────────────────────────────────────────────────
 function Matchs() {
 const { matches, bets } = useApp();
-const upcoming = matches.filter(m => m.status === “upcoming”);
-const done = matches.filter(m => m.status === “done”);
+const upcoming = matches.filter(m => m.status === "upcoming”);
+const done = matches.filter(m => m.status === "done”);
 
 const MatchCard = ({ m, finished }) => {
 const matchBets = bets.filter(b => b.matchId === m.id);
@@ -302,7 +302,7 @@ return (
 return (
 <div>
 <SectionTitle>MATCHS À VENIR ({upcoming.length})</SectionTitle>
-{upcoming.length === 0 && <Card><div style={{ color: T.faint, textAlign: “center”, fontSize: 13, padding: 8 }}>Aucun match prévu pour l’instant</div></Card>}
+{upcoming.length === 0 && <Card><div style={{ color: T.faint, textAlign: "center”, fontSize: 13, padding: 8 }}>Aucun match prévu pour l’instant</div></Card>}
 {upcoming.map(m => <MatchCard key={m.id} m={m} finished={false} />)}
 
 ```
@@ -324,17 +324,17 @@ const { currentUser, players, matches, bets, setBets, setPlayers, showNotif } = 
 const [matchId, setMatchId] = useState(””);
 const [pick, setPick] = useState(””);
 const [amount, setAmount] = useState(””);
-const upcoming = matches.filter(m => m.status === “upcoming”);
+const upcoming = matches.filter(m => m.status === "upcoming”);
 const selected = matches.find(m => m.id === matchId);
 const myCoins = players.find(p => p.name === currentUser)?.coins ?? 0;
 
 const placeBet = () => {
-if (!selected) return showNotif(“Choisis un match”, “error”);
-if (!pick) return showNotif(“Choisis un joueur”, “error”);
+if (!selected) return showNotif("Choisis un match”, "error”);
+if (!pick) return showNotif("Choisis un joueur”, "error”);
 const amt = parseInt(amount);
-if (!amt || amt <= 0) return showNotif(“Montant invalide”, “error”);
-if (amt > myCoins) return showNotif(“Pas assez de TomoCoins !”, “error”);
-if (bets.find(b => b.user === currentUser && b.matchId === matchId)) return showNotif(“Tu as déjà parié sur ce match !”, “error”);
+if (!amt || amt <= 0) return showNotif("Montant invalide”, "error”);
+if (amt > myCoins) return showNotif("Pas assez de TomoCoins !”, "error”);
+if (bets.find(b => b.user === currentUser && b.matchId === matchId)) return showNotif("Tu as déjà parié sur ce match !”, "error”);
 
 ```
 setBets(prev => [...prev, { id: Date.now().toString(), user: currentUser, matchId, pick, amount: amt }]);
@@ -424,12 +424,12 @@ const sorted = […players].sort((a, b) => b.coins - a.coins);
 
 const getStats = (name) => {
 const myBets = bets.filter(b => b.user === name);
-const finished = myBets.filter(b => matches.find(m => m.id === b.matchId)?.status === “done”);
+const finished = myBets.filter(b => matches.find(m => m.id === b.matchId)?.status === "done”);
 const won = finished.filter(b => matches.find(m => m.id === b.matchId)?.result === b.pick);
 return { total: myBets.length, wins: won.length, wr: finished.length > 0 ? Math.round((won.length / finished.length) * 100) : 0 };
 };
 
-const medals = [“🥇”, “🥈”, “🥉”];
+const medals = ["🥇”, "🥈”, "🥉”];
 
 return (
 <div>
@@ -438,19 +438,19 @@ return (
 const stats = getStats(p.name);
 return (
 <Card key={p.id} highlight={i === 0} style={{ marginBottom: 8 }}>
-<div style={{ display: “flex”, alignItems: “center”, gap: 12 }}>
-<div style={{ fontFamily: T.fontDisplay, fontSize: i < 3 ? 24 : 16, fontWeight: 900, color: i === 0 ? T.gold : i === 1 ? “#9ca3af” : i === 2 ? “#cd7c2f” : T.faint, width: 34, textAlign: “center” }}>
+<div style={{ display: "flex”, alignItems: "center”, gap: 12 }}>
+<div style={{ fontFamily: T.fontDisplay, fontSize: i < 3 ? 24 : 16, fontWeight: 900, color: i === 0 ? T.gold : i === 1 ? "#9ca3af” : i === 2 ? "#cd7c2f” : T.faint, width: 34, textAlign: "center” }}>
 {i < 3 ? medals[i] : `#${i + 1}`}
 </div>
 <div style={{ flex: 1 }}>
 <div style={{ fontSize: 16, fontWeight: 700 }}>{p.name}</div>
-<div style={{ display: “flex”, gap: 10, marginTop: 3 }}>
+<div style={{ display: "flex”, gap: 10, marginTop: 3 }}>
 <span style={{ fontSize: 11, color: gameColor(p.game) }}>{gameEmoji(p.game)} {p.game}</span>
 <span style={{ fontSize: 11, color: T.muted }}>{stats.total} paris</span>
 <span style={{ fontSize: 11, color: stats.wr >= 50 ? T.green : T.red }}>{stats.wr}% win</span>
 </div>
 </div>
-<div style={{ textAlign: “right” }}>
+<div style={{ textAlign: "right” }}>
 <div style={{ fontFamily: T.fontDisplay, fontSize: 16, fontWeight: 900, color: i === 0 ? T.gold : T.red }}>{p.coins.toLocaleString()}</div>
 <div style={{ fontSize: 10, color: T.muted }}>TC</div>
 </div>
@@ -467,21 +467,21 @@ function Admin() {
 const { players, setPlayers, matches, setMatches, bets, setBets, showNotif } = useApp();
 const [unlocked, setUnlocked] = useState(false);
 const [pwd, setPwd] = useState(””);
-const [newMatch, setNewMatch] = useState({ p1: “”, p2: “”, game: “eFootball” });
-const [newPlayer, setNewPlayer] = useState({ name: “”, game: “eFootball” });
+const [newMatch, setNewMatch] = useState({ p1: "”, p2: "”, game: "eFootball” });
+const [newPlayer, setNewPlayer] = useState({ name: "”, game: "eFootball” });
 const [bonusAmount, setBonusAmount] = useState(””);
 
 const unlock = () => {
-if (pwd === “tomodachi2025”) { setUnlocked(true); showNotif(“Accès admin accordé ✅”); }
-else showNotif(“Mot de passe incorrect”, “error”);
+if (pwd === "tomodachi2025”) { setUnlocked(true); showNotif("Accès admin accordé ✅”); }
+else showNotif("Mot de passe incorrect”, "error”);
 };
 
 const addMatch = () => {
 if (!newMatch.p1.trim() || !newMatch.p2.trim() || newMatch.p1 === newMatch.p2)
-return showNotif(“Match invalide”, “error”);
-setMatches(prev => […prev, { id: Date.now().toString(), …newMatch, status: “upcoming”, result: null }]);
-setNewMatch({ p1: “”, p2: “”, game: “eFootball” });
-showNotif(“Match ajouté ! ⚔️”);
+return showNotif("Match invalide”, "error”);
+setMatches(prev => […prev, { id: Date.now().toString(), …newMatch, status: "upcoming”, result: null }]);
+setNewMatch({ p1: "”, p2: "”, game: "eFootball” });
+showNotif("Match ajouté ! ⚔️”);
 };
 
 const resolveMatch = (matchId, winner) => {
@@ -509,15 +509,15 @@ showNotif(`🏆 ${winner} gagne ! Paris distribués.`);
 
 const addPlayer = () => {
 if (!newPlayer.name.trim() || players.find(p => p.name === newPlayer.name))
-return showNotif(“Joueur invalide ou déjà existant”, “error”);
+return showNotif("Joueur invalide ou déjà existant”, "error”);
 setPlayers(prev => […prev, { id: Date.now().toString(), …newPlayer, coins: 1000 }]);
-setNewPlayer({ name: “”, game: “eFootball” });
+setNewPlayer({ name: "”, game: "eFootball” });
 showNotif(`${newPlayer.name} ajouté avec 1000 TC ! 🎉`);
 };
 
 const giveBonus = () => {
 const amt = parseInt(bonusAmount);
-if (!amt || amt <= 0) return showNotif(“Montant invalide”, “error”);
+if (!amt || amt <= 0) return showNotif("Montant invalide”, "error”);
 setPlayers(prev => prev.map(p => ({ …p, coins: p.coins + amt })));
 setBonusAmount(””);
 showNotif(`+${amt} TC offerts à tous les joueurs ! 🎁`);
@@ -526,18 +526,18 @@ showNotif(`+${amt} TC offerts à tous les joueurs ! 🎁`);
 const deleteMatch = (id) => {
 setMatches(prev => prev.filter(m => m.id !== id));
 setBets(prev => prev.filter(b => b.matchId !== id));
-showNotif(“Match supprimé”);
+showNotif("Match supprimé”);
 };
 
-const upcoming = matches.filter(m => m.status === “upcoming”);
-const GAMES = [“eFootball”, “CoDM”, “CoC”];
+const upcoming = matches.filter(m => m.status === "upcoming”);
+const GAMES = ["eFootball”, "CoDM”, "CoC”];
 
 if (!unlocked) return (
 <Card>
 <SectionTitle>🔒 ACCÈS ADMIN</SectionTitle>
-<div style={{ textAlign: “center”, padding: “10px 0 16px” }}>
+<div style={{ textAlign: "center”, padding: "10px 0 16px” }}>
 <div style={{ fontSize: 13, color: T.muted, marginBottom: 16 }}>Réservé aux administrateurs de Tomodachi E-sport</div>
-<Input type=“password” value={pwd} onChange={e => setPwd(e.target.value)} placeholder=“Mot de passe admin” style={{ marginBottom: 10 }} />
+<Input type="password” value={pwd} onChange={e => setPwd(e.target.value)} placeholder="Mot de passe admin” style={{ marginBottom: 10 }} />
 <Btn onClick={unlock}>ENTRER</Btn>
 <div style={{ fontSize: 11, color: T.faint, marginTop: 10 }}>Indice: tomodachi + année actuelle</div>
 </div>
@@ -549,11 +549,11 @@ return (
 {/* Add match */}
 <Card>
 <SectionTitle>⚔️ AJOUTER UN MATCH</SectionTitle>
-<div style={{ marginBottom: 8 }}><Label>JOUEUR 1</Label><Input value={newMatch.p1} onChange={e => setNewMatch({ …newMatch, p1: e.target.value })} placeholder=“Nom du joueur 1” /></div>
-<div style={{ marginBottom: 8 }}><Label>JOUEUR 2</Label><Input value={newMatch.p2} onChange={e => setNewMatch({ …newMatch, p2: e.target.value })} placeholder=“Nom du joueur 2” /></div>
+<div style={{ marginBottom: 8 }}><Label>JOUEUR 1</Label><Input value={newMatch.p1} onChange={e => setNewMatch({ …newMatch, p1: e.target.value })} placeholder="Nom du joueur 1” /></div>
+<div style={{ marginBottom: 8 }}><Label>JOUEUR 2</Label><Input value={newMatch.p2} onChange={e => setNewMatch({ …newMatch, p2: e.target.value })} placeholder="Nom du joueur 2” /></div>
 <div style={{ marginBottom: 12 }}><Label>JEU</Label>
 <Select value={newMatch.game} onChange={e => setNewMatch({ …newMatch, game: e.target.value })}>
-{GAMES.map(g => <option key={g} value={g} style={{ background: “#111118” }}>{gameEmoji(g)} {g}</option>)}
+{GAMES.map(g => <option key={g} value={g} style={{ background: "#111118” }}>{gameEmoji(g)} {g}</option>)}
 </Select>
 </div>
 <Btn onClick={addMatch} color={T.cyan}>+ CRÉER LE MATCH</Btn>
@@ -626,12 +626,12 @@ return (
 
 // ─── APP ROOT ─────────────────────────────────────────────────────────────────
 const INITIAL_PLAYERS = [
-{ id: “1”, name: “ghostBs”, coins: 1000, game: “eFootball” },
-{ id: “2”, name: “Immortel”, coins: 1000, game: “eFootball” },
-{ id: “3”, name: “GAMEKIONE”, coins: 1000, game: “eFootball” },
-{ id: “4”, name: “Officiel14”, coins: 1000, game: “eFootball” },
-{ id: “5”, name: “Yaya1745”, coins: 1000, game: “CoC” },
-{ id: “6”, name: “S-Optimus”, coins: 1000, game: “CoDM” },
+{ id: "1”, name: "ghostBs”, coins: 1000, game: "eFootball” },
+{ id: "2”, name: "Immortel”, coins: 1000, game: "eFootball” },
+{ id: "3”, name: "GAMEKIONE”, coins: 1000, game: "eFootball” },
+{ id: "4”, name: "Officiel14”, coins: 1000, game: "eFootball” },
+{ id: "5”, name: "Yaya1745”, coins: 1000, game: "CoC” },
+{ id: "6”, name: "S-Optimus”, coins: 1000, game: "CoDM” },
 ];
 
 export default function App() {
@@ -641,7 +641,7 @@ const [bets, setBets] = useState([]);
 const [currentUser, setCurrentUser] = useState(INITIAL_PLAYERS[0].name);
 const [notif, setNotif] = useState(null);
 
-const showNotif = (msg, type = “success”) => {
+const showNotif = (msg, type = "success”) => {
 setNotif({ msg, type });
 setTimeout(() => setNotif(null), 2800);
 };
